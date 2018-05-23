@@ -1,7 +1,10 @@
 
-data.3.23 <- read.csv("./Excel/Problem3_23.csv", colClasses = c('factor','numeric'))
+data.3.22 <- read.csv("./Excel/Problem3_22.csv", colClasses = c('factor','numeric'))
 
-result.3.23 <- aov(Life ~ Fluid.Type , data=data.3.23)
+result.3.22 <- aov( Resp.time ~ Circuit.type, data=data.3.22)
 
-summary(result.3.23)
+summary(result.3.22)
 
+out = LSD.test(result.3.22,"Circuit.type",group=TRUE,console=TRUE)
+
+aggdata <-aggregate(data.3.22$Resp.time, by=list(ct = data.3.22$Circuit.type),FUN=mean)
